@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+        <title> homework15</title>
+         <!-- <link rel="stylesheet" href="css/style.css"> -->
+    </head>
+    <style>
+
+    body{
+    	min-width: 1100px;
+    	min-height: 780px;
+    } 
+    .container {
+    width: 800px;
+    height: 600px;
+    border: 3px solid red;
+    position: relative;
+    margin: 0 auto;
+	}
+	.main {
+		width: 300px;
+	    height: 200px;
+	    border: 1px solid blue;
+	    position: relative;
+	    margin: 0 auto;
+	    top: 100px;
+	}
+	.btn_create {
+		position: relative;
+		left: 28%;
+	}
+	.squere {
+		width: 50px;
+		height: 50px;
+		background-color: grey;
+		position: absolute;
+		display: none;
+		border: 1px solid black;
+		top: 0;
+		left: 0;
+		cursor: pointer;
+	}	
+	.squres {
+		cursor: pointer;
+	}
+	.red,	
+	.blue,
+	.yellow {
+		width: 40px;
+	    height: 40px;
+	    display: inline-block;
+	    margin-left: 43px;
+	    margin-top: 30px;
+	}
+	.red {
+		background-color: red;
+	}
+	.blue {
+		background-color: blue;
+	}
+	.yellow {
+		background-color: yellow;
+	}
+
+	.btn_cords {
+		display: none;
+	}
+    </style>
+    <body>
+            
+            <div class="container">
+                <div class="main">
+                	<button class="btn_create"> Створити елемент</button>	
+						<form action="#" neme="squere_type">
+					Ширина px	<input type="text" name="width_1" id="width_1" value="50"> 
+					Висота px	<input type="text" name="height_1" id="height_1" value="50">
+						</form>
+					
+
+					<div class="squre_color_wrap">
+						<div class="  red squeres"></div>
+						<div class=" blue squeres "></div>
+						<div class=" yellow squeres "></div>
+					</div>
+					<button class="btn_cords">Координати</button>
+                </div>	
+				
+
+			<div class="squere"></div>
+            </div>
+        <script>
+            function getE(a){
+				return document.querySelector(a);
+			}
+			 var df = document.forms;
+
+         getE('.btn_create').onclick= function() { 
+         		getE('.squere').style.display = "block";
+         		getE('.btn_cords').style.display = "block";
+         		getE('.squere').style.width = document.getElementById('width_1').value + 'px';
+         		getE('.squere').style.height = document.getElementById('height_1').value + 'px';
+         }  
+
+        document.getElementById('width_1').onblur= function() {
+         	getE('.squere').style.width = document.getElementById('width_1').value + 'px';
+         }
+        document.getElementById('height_1').onblur= function() {
+         	getE('.squere').style.height = document.getElementById('height_1').value + 'px';
+         }
+
+         var arrx = [];
+         var arry = [];
+         
+         getE('.btn_cords').onclick=function() {
+         	getE('.main').style.display= "none";
+         	  var num = parseInt(prompt('Скільки пар координат?','2'));
+           	for ( var i=0; i<num; i++) {
+         		 arrx[i] = parseInt(prompt('введіть координати "x" в %',' '));
+         	}
+         	for ( var j=0; j< num; j++) {
+         		 arry[j] = parseInt( prompt('введіть координати "y" в %',' '));
+         	}
+
+         }
+         var bcg = 0;
+        getE('.squere').onmouseover= function() {
+         	this.style.top = arrx[bcg] + '%';
+         	this.style.left = arry[bcg] + '%';
+				bcg++;
+				if(bcg==arrx.length + 1) {
+					this.style.top = 0 + 'px';
+					this.style.left= 0 + 'px';
+					getE('.main').style.display= "block";
+				}
+         }
+
+        </script>
+    </body>
+</html>
